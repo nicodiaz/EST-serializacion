@@ -6,11 +6,13 @@ require_once '../../vendor/autoload.php';
  * Valores para la aplicacion de PersistenciaClase de Twitter
  * 
  */
-define('TW_API_KEY', '');
-define('TW_API_SECRET', '');
-define('TW_TOKEN', '');
-define('TW_TOKEN_SECRET', '');
 
 
+$settings = array(
+    'oauth_access_token' => "",
+    'oauth_access_token_secret' => "",
+    'consumer_key' => "",
+    'consumer_secret' => ""
+);
 
 
