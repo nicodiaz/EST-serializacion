@@ -1,0 +1,6 @@
+{
+	"require": {
+		"jublonet/codebird-php":  "*"
+	}
+}
+
