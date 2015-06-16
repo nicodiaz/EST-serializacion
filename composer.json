@@ -1,6 +1,6 @@
 {
 	"require": {
-		"jublonet/codebird-php":  "*"
+		"j7mbo/twitter-api-php": "*"
 	}
 }
 

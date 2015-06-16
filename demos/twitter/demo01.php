@@ -1,36 +1,27 @@
 <?php
 include_once 'conf.php';
 
-// Setting KEYS
-\Codebird\Codebird::setConsumerKey ( TW_API_KEY, TW_API_SECRET );
-$cb = \Codebird\Codebird::getInstance ();
-$cb->setToken ( TW_TOKEN, TW_TOKEN_SECRET );
+$url = 'https://api.twitter.com/1.1/statuses/home_timeline.json';
+// $getfield = '?username=nicoclases';
+$getfield = '';
+$requestMethod = 'GET';
+$twitter = new TwitterAPIExchange($settings);
 
-// Home Timeline (tweets from people he follow)
-$reply = $cb->statuses_homeTimeline ();
+$reply = $twitter->setGetfield($getfield)
+    ->buildOauth($url, $requestMethod)
+    ->performRequest();
 
-/*
- * $reply -> anArray of anObject
- */
+// Cuando se decofidica, reply es un array de objetos.
+$tweets = json_decode($reply);
 
-foreach ( $reply as $tweet ) 
+foreach ($tweets as $tweet) 
 {
-	
-	if (isset($tweet->created_at))
-	{
-		// It's a valid tweet
-		echo "--------------------------------" . "\n";
-		echo "Creado el:" . ($tweet->created_at) . "\n";
-		echo "Texto:" . ($tweet->text) . "\n";
-		echo "Usuario:" . ($tweet->user->name) . "\n";
-	}
+	echo "--------------------------------" . "\n";
+	echo "Creado el:" . ($tweet->created_at) . "\n";
+	echo "Texto:" . ($tweet->text) . "\n";
+	echo "Usuario:" . ($tweet->user->name) . "\n";
+	echo "URL Imagen:" . ($tweet->user->profile_image_url) . "\n";
+	echo "\n";
 }
-
-
-
-
-
-
-
 
 

@@ -4,155 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "880f8aa593fef236f049efcaf29a9f4c",
+    "hash": "9052639fd0723754bdc98b37b32dc15f",
     "packages": [
         {
-            "name": "composer/installers",
-            "version": "v1.0.21",
+            "name": "j7mbo/twitter-api-php",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/composer/installers.git",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
+                "url": "https://github.com/J7mbo/twitter-api-php.git",
+                "reference": "dce9847861a5886512b3d47ba77d42722aa010cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "url": "https://api.github.com/repos/J7mbo/twitter-api-php/zipball/dce9847861a5886512b3d47ba77d42722aa010cf",
+                "reference": "dce9847861a5886512b3d47ba77d42722aa010cf",
                 "shasum": ""
             },
-            "replace": {
-                "roundcube/plugin-installer": "*",
-                "shama/baton": "*"
+            "require": {
+                "ext-curl": "*"
             },
             "require-dev": {
-                "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "4.1.*"
+                "phpunit/phpunit": "~4.5,>=4.5.1"
             },
-            "type": "composer-installer",
+            "type": "library",
             "extra": {
-                "class": "Composer\\Installers\\Installer",
                 "branch-alias": {
                     "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Composer\\Installers\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kyle Robinson Young",
-                    "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama"
-                }
-            ],
-            "description": "A multi-framework Composer library installer",
-            "homepage": "http://composer.github.com/installers/",
-            "keywords": [
-                "Craft",
-                "Dolibarr",
-                "Hurad",
-                "MODX Evo",
-                "OXID",
-                "SMF",
-                "Thelia",
-                "WolfCMS",
-                "agl",
-                "aimeos",
-                "annotatecms",
-                "bitrix",
-                "cakephp",
-                "chef",
-                "codeigniter",
-                "concrete5",
-                "croogo",
-                "dokuwiki",
-                "drupal",
-                "elgg",
-                "fuelphp",
-                "grav",
-                "installer",
-                "joomla",
-                "kohana",
-                "laravel",
-                "lithium",
-                "magento",
-                "mako",
-                "mediawiki",
-                "modulework",
-                "moodle",
-                "phpbb",
-                "piwik",
-                "ppi",
-                "puppet",
-                "roundcube",
-                "shopware",
-                "silverstripe",
-                "symfony",
-                "typo3",
-                "wordpress",
-                "zend",
-                "zikula"
-            ],
-            "time": "2015-02-18 17:17:01"
-        },
-        {
-            "name": "jublonet/codebird-php",
-            "version": "2.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jublonet/codebird-php.git",
-                "reference": "b3a669debe7776c24fb830318073cc615f139ab2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jublonet/codebird-php/zipball/b3a669debe7776c24fb830318073cc615f139ab2",
-                "reference": "b3a669debe7776c24fb830318073cc615f139ab2",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0",
-                "ext-hash": "*",
-                "ext-json": "*",
-                "lib-openssl": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
+                "files": [
+                    "TwitterAPIExchange.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0+"
+                "GNU Public License"
             ],
             "authors": [
                 {
-                    "name": "Joshua Atkins",
-                    "email": "joshua.atkins@jublo.net",
-                    "homepage": "http://atkins.im/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "J.M.",
-                    "email": "jm@jublo.net",
-                    "homepage": "http://mynetx.net/",
-                    "role": "Developer"
+                    "name": "James Mallison",
+                    "homepage": "https://github.com/j7mbo/twitter-api-php"
                 }
             ],
-            "description": "A Twitter library in PHP.",
-            "homepage": "http://www.jublo.net/projects/codebird/php",
+            "description": "Simple PHP Wrapper for Twitter API v1.1 calls",
+            "homepage": "https://github.com/j7mbo/twitter-api-php",
             "keywords": [
                 "api",
-                "networking",
+                "php",
                 "twitter"
             ],
-            "time": "2015-05-14 17:51:34"
+            "time": "2015-05-18 10:13:59"
         }
     ],
     "packages-dev": [],
