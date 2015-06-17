@@ -15,4 +15,11 @@ $settings = array(
     'consumer_secret' => ""
 );
 
+$settingsDB = array(
+    'host' => '',
+    'port' => '',
+    'user' => '',
+    'password' => '',
+    'dbname' => ''
+);
 

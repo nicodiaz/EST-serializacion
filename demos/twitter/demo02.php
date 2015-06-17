@@ -1,10 +1,14 @@
 <?php
 /**
- * Ejemplo de recupero del timeline del usuario y mostrandolo por salida standard, 
- * pero utilizando las propiedades de los objetos decodificados.
+ * Recupero del timeline del usuario y se graba en la base de datos. 
+ * Opcionalmente, se puede reconstruir los objetos deserilizandolos. 
  */
 
 include_once 'conf.php';
+include_once 'DB.php';
+
+
+$db = new DB($settingsDB);
 
 $url = 'https://api.twitter.com/1.1/statuses/home_timeline.json';
 // $getfield = '?username=nicoclases';
@@ -21,12 +25,14 @@ $tweets = json_decode($reply);
 
 foreach ($tweets as $tweet) 
 {
-	echo "--------------------------------" . "\n";
-	echo "Creado el:" . ($tweet->created_at) . "\n";
-	echo "Texto:" . ($tweet->text) . "\n";
-	echo "Usuario:" . ($tweet->user->name) . "\n";
-	echo "URL Imagen:" . ($tweet->user->profile_image_url) . "\n";
-	echo "\n";
+    $db->saveTweet($tweet);
 }
+
+// $resultset = $db->getTweets();
+
+// foreach ($resultset as $result) 
+// {
+//     print_r($result);
+// }
 
 

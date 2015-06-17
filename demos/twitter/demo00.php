@@ -1,4 +1,7 @@
 <?php
+/**
+ * Recupero del timeline del usuario y se muestra el resultado (en JSON) por salida standard.
+ */
 include_once 'conf.php';
 
 $url = 'https://api.twitter.com/1.1/statuses/home_timeline.json';

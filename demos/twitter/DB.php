@@ -77,35 +77,29 @@ class DB
     /**
      * Process the emails that are stored in the datasource and send them
      */
-    public function processQueue()
+    public function getTweets()
     {
+        /**
+         * TODO: Implement This
+         */
         $conn = $this->getConnection();
         
         $stmt = $conn->query('
-			SELECT e.*, t.subject, t.body 
-			FROM emails e INNER JOIN types t ON e.typeId = t.id 
-			WHERE sent = 0
+			SELECT raw 
+			FROM tweets 
 		');
-        
+
         $data = $stmt->fetch();
-        while (! empty($data)) {
-            $data['body'] = $this->_replaceBodyParams($data['body'], $data['params']);
-            
-            $result = $this->sendMail($data['email'], $data['subject'], $data['body']);
-            
-            // If success, update the email as sent
-            if ($result == true) {
-                $conn->prepare('UPDATE emails SET sent = 1 WHERE id = :emailId')->execute(array(
-                    ':emailId' => $data['id']
-                ));
-            }
-            
-            // Next value
-            $data = $stmt->fetch();
+        
+        $results = array();
+        
+        foreach ($data as $value) 
+        {
+            $results[] = unserialize($value);
         }
+        
+        return $results;
     }
-
-
 
     /**
      * Add an email to the queue to be processed by the cron job
@@ -123,23 +117,26 @@ class DB
      *
      * @return bool
      */
-    public function enqueueEmail($email, $type = 1, $params = array())
+    public function saveTweet($tweet)
     {
         // Preconditions
-        if (empty($email) || empty($type) || $type <= 0) {
-            throw new \InvalidArgumentException("Error adding an email to the queue: is empty or the type doesn't exists");
+        if (empty($tweet)) {
+            throw new \InvalidArgumentException("Error: Empty tweet cannot be saved");
         }
         
         $conn = $this->getConnection();
         
-        $params = json_encode($params);
-        
-        $st = $conn->prepare('INSERT INTO emails (typeId, email, params) VALUES(:typeId, :email, :params)');
+        $st = $conn->prepare('
+            INSERT INTO tweets (date, texto, username, imageurl, raw) 
+            VALUES(:date, :texto, :username, :imageurl, :raw)
+        ');
         
         return $st->execute(array(
-            ':typeId' => $type,
-            ':email' => $email,
-            ':params' => $params
+            ':date' => gmdate('Y-m-d H:i:s', strtotime($tweet->created_at)),
+            ':texto' => $tweet->text,
+            ':username' => $tweet->user->name,
+            ':imageurl' => $tweet->user->profile_image_url,
+            ':raw' => serialize($tweet),
         ));
     }
 
