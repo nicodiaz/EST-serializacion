@@ -1,0 +1,25 @@
+<?php
+
+require_once '../../vendor/autoload.php';
+
+/**
+ * Valores para la aplicacion de PersistenciaClase de Twitter
+ * 
+ */
+
+
+$settings = array(
+    'oauth_access_token' => "",
+    'oauth_access_token_secret' => "",
+    'consumer_key' => "",
+    'consumer_secret' => ""
+);
+
+$settingsDB = array(
+    'host' => '',
+    'port' => '',
+    'user' => '',
+    'password' => '',
+    'dbname' => ''
+);
+
