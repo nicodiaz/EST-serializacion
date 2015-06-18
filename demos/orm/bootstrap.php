@@ -1,40 +1,25 @@
 <?php
-use Doctrine\ORM\Tools\Setup,
-    Doctrine\ORM\EntityManager,
-    Doctrine\ORM\Configuration,
-    Doctrine\Common\Cache\ArrayCache as Cache,
-    Doctrine\Common\Annotations\AnnotationRegistry,
-    Doctrine\Common\ClassLoader;
- 
-//autoloading
-require_once __DIR__ . '/vendor/autoload.php';
-$loader = new ClassLoader('Entity', __DIR__ . '/library');
-$loader->register();
-$loader = new ClassLoader('EntityProxy', __DIR__ . '/library');
-$loader->register();
- 
-//configuration
-$config = new Configuration();
-$cache = new Cache();
-$config->setQueryCacheImpl($cache);
-$config->setProxyDir(__DIR__ . '/library/EntityProxy');
-$config->setProxyNamespace('EntityProxy');
-$config->setAutoGenerateProxyClasses(true);
- 
-//mapping (example uses annotations, could be any of XML/YAML or plain PHP)
-AnnotationRegistry::registerFile(__DIR__ . '/library/doctrine-orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
-$driver = new Doctrine\ORM\Mapping\Driver\AnnotationDriver(
-    new Doctrine\Common\Annotations\AnnotationReader(),
-    array(__DIR__ . '/library/Entity')
+// bootstrap.php
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+
+require_once "vendor/autoload.php";
+
+// Create a simple "default" Doctrine ORM configuration for Annotations
+$isDevMode = true;
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
+// or if you prefer yaml or XML
+//$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
+//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
+
+// database configuration parameters
+$conn = array(
+    'driver' => 'pdo_mysql',
+    'host' => '127.0.0.1',
+    'dbname' => 'orm',
+    'user' => 'est',
+    'password' => 'est'
 );
-$config->setMetadataDriverImpl($driver);
-$config->setMetadataCacheImpl($cache);
- 
-//getting the EntityManager
-$em = EntityManager::create(
-    array(
-        'driver' => 'pdo_sqlite',
-        'path' => 'database.sqlite'
-    ),
-    $config
-);
+
+// obtaining the entity manager
+$entityManager = EntityManager::create($conn, $config);

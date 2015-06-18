@@ -1,27 +1,25 @@
 <?php
-namespace Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
+/**
+ * @Entity @Table(name="Personajes")
+ **/
 class Personaje
 {
 
     /**
-     *
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var int
+     * @Id @Column(type="integer") @GeneratedValue *
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * 
-     * @var string
+     * @Column(type="string") *
      */
     private $nombre;
+
+    /**
+     * @ManyToOne(targetEntity="Tropa")
+     */
+    protected $tropa;
 
     /**
      *
@@ -48,5 +46,15 @@ class Personaje
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+    }
+
+    public function setTropa($tropa)
+    {
+        $this->tropa = $tropa;
+    }
+
+    public function getTropa()
+    {
+        return $this->tropa;
     }
 }
