@@ -1,0 +1,6 @@
+# Eclipse Settings
+.settings/
+
+
+# Ignore Backup Files
+*~
