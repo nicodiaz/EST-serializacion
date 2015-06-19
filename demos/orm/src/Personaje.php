@@ -17,7 +17,7 @@ class Personaje
     private $nombre;
 
     /**
-     * @ManyToOne(targetEntity="Tropa")
+     * @ManyToOne(targetEntity="Tropa", inversedBy="soldados")
      */
     protected $tropa;
 
