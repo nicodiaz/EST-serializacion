@@ -1,6 +1,6 @@
 <?php
 /**
- * Ejemplo de recupero del timeline del usuario y mostrandolo por salida standard, 
+ * Ejemplo de recupero del timeline del usuario, mostrandolo por salida standard, 
  * pero utilizando las propiedades de los objetos decodificados.
  */
 

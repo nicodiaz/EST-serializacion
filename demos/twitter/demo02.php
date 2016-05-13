@@ -20,7 +20,7 @@ $reply = $twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
     ->performRequest();
 
-// Cuando se decofidica, reply es un array de objetos.
+// Cuando se decodifica, reply es un array de objetos.
 $tweets = json_decode($reply);
 
 foreach ($tweets as $tweet) 
@@ -28,6 +28,7 @@ foreach ($tweets as $tweet)
     $db->saveTweet($tweet);
 }
 
+// Se Recuperan (deserializan) los tweets de la base
 // $resultset = $db->getTweets();
 
 // foreach ($resultset as $result) 

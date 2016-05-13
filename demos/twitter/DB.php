@@ -76,12 +76,10 @@ class DB
 
     /**
      * Process the emails that are stored in the datasource and send them
+     * to the receiver
      */
     public function getTweets()
     {
-        /**
-         * TODO: Implement This
-         */
         $conn = $this->getConnection();
         
         $stmt = $conn->query('
